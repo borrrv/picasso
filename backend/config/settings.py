@@ -1,6 +1,7 @@
-from pathlib import Path
-from dotenv import load_dotenv
 from os import getenv
+from pathlib import Path
+
+from dotenv import load_dotenv
 
 load_dotenv()
 
@@ -92,5 +93,8 @@ USE_I18N = True
 USE_TZ = True
 
 STATIC_URL = "static/"
+
+MEDIA_URL = '/media/'
+MEDIA_ROOT = Path(BASE_DIR).joinpath('media')
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
