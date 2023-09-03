@@ -34,3 +34,5 @@ sudo docker-compose up -d --build
     }
 ]
 ```
+- Coverage
+![screenshot](https://github.com/borrrv/picasso/blob/main/images/coverage.png?raw=true)
