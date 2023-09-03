@@ -18,10 +18,10 @@ services:
       - db
     env_file:
       - ./.env
-    command: ./.entrypoint.sh
+    command: ./infra/entrypoint.sh
   
   rabbit:
-    image: rabbitmq:3.12-alpine
+    image: rabbitmq:3-management
     restart: always
     hostname: rabbit
     ports:
@@ -30,15 +30,21 @@ services:
       - rabbitmq_value:/var/lib/rabbitmq/data/
 
   worker:
-    restart: always
     build: ..
-    command: ["celery", "-A", "config", "worker"]
+    command: "celery -A config worker -l INFO"
+    environment:
+      - rabbitmq_uri=amqp://localhost:5672
+    volumes:
+      - worker_data:/app/worker_data/
+    depends_on:
+      - rabbit
+      - backend
+      - db
 
   nginx:
     image: nginx:1.21.3-alpine
     ports:
       - "80:80"
-    
     volumes:
       - ./nginx.conf:/etc/nginx/conf.d/default.conf
       - static_value:/var/html/static/
@@ -51,3 +57,4 @@ volumes:
   static_value:
   media_value:
   rabbitmq_value:
+  worker_data:

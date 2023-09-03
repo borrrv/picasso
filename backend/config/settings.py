@@ -92,7 +92,7 @@ USE_I18N = True
 
 USE_TZ = True
 
-STATIC_URL = "static/"
+STATIC_URL = "/static/"
 STATIC_ROOT = Path(BASE_DIR).joinpath("static")
 
 MEDIA_URL = "/media/"
@@ -100,4 +100,4 @@ MEDIA_ROOT = Path(BASE_DIR).joinpath("media")
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
-CELERY_BROKER_URL = "amqp://rabbit:5672/"
+CELERY_BROKER_URL = getenv("CELERY_BROKER")
