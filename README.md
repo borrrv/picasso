@@ -1,5 +1,4 @@
 <!-- README.md -->
-+ [![cov](https://<you>.github.io/borrrv/badges/coverage.svg)](https://github.com/borrrv/picasso/actions)
 # Тестовое задание для Picasso
 ## Запуск проекта
 - Введите команду
